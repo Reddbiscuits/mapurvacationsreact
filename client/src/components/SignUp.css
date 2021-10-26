@@ -1,0 +1,18 @@
+.modal-content {
+  padding: 20px 20px 20px 20px;
+}
+
+.btn-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Username {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-label {
+  display: flex;
+  align-content: left;
+}
