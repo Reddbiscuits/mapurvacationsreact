@@ -1,0 +1,22 @@
+.homeBaseBody {
+  display: flex;
+  /* justify-content: space-evenly; */
+}
+
+.baseMap {
+  padding-top: 80px;
+  padding-left: 80px;
+}
+
+.loginFields {
+  padding-top: 150px;
+  padding-left: 30px;
+}
+
+.form-control {
+  border-width: 3px;
+}
+
+.btn-outline-primary {
+  border-width: 3px;
+}

@@ -1,71 +1,72 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const User = require('../models/UserModel')
+const User = require("../models/UserModel");
 
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
 
-
-
-router.post('/signup', (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
   User.findOne({ username: username }).then((foundUser) => {
     if (foundUser) {
-      res.json({ message: 'username already exists' })
+      res.json({ message: "username already exists" });
     } else {
-
       const salt = bcrypt.genSaltSync(10);
       const hashPass = bcrypt.hashSync(password, salt);
 
       const aNewUser = new User({
         username: username,
-        password: hashPass
+        password: hashPass,
       });
 
       aNewUser.save().then(() => {
-        res.json({ message: 'user created' })
-      })
-
+        res.json({ message: "user created" });
+      });
     }
-  })
-})
+  });
+});
 
-router.post('/login', (req, res, next) => {
+router.post("/login", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({ username: username })
-    .then(foundUser => {
-      if (!foundUser) {
-        res.json({ message: 'username not registered - register first' })
+  User.findOne({ username: username }).then((foundUser) => {
+    if (!foundUser) {
+      res.json({ errorMessage: "username not registered - register first" });
+    } else {
+      if (bcrypt.compareSync(password, foundUser.password)) {
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = foundUser;
+        res.json({ user: foundUser });
       } else {
-        if (bcrypt.compareSync(password, foundUser.password)) {
-
-
-          //******* SAVE THE USER IN THE SESSION ********//
-          req.session.currentUser = foundUser;
-
-          res.json({ message: 'login success', user: foundUser })
-        } else {
-          res.json({ message: 'password incorrect' })
-        }
+        res.json({ errorMessage: "password incorrect" });
       }
-    })
+    }
+  });
 });
 
-router.delete('/logout', (req, res) => {
+router.post("/save-home-base", (req, res) => {
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    longitude: req.body.theLongitude,
+    latitude: req.body.theLatitude,
+  }).then(() => {
+    res.redirect("/userprofile");
+  });
+});
+
+router.delete("/logout", (req, res) => {
   if (req.session) {
-    req.session.destroy(err => {
+    req.session.destroy((err) => {
       if (err) {
-        res.status(400).send('Unable to log out')
+        res.status(400).send("Unable to log out");
       } else {
-        res.send('Logout successful')
+        res.send("Logout successful");
       }
     });
   } else {
-    res.end()
+    res.end();
   }
 });
 

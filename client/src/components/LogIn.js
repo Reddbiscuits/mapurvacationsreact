@@ -8,7 +8,8 @@ class Login extends React.Component {
   state = {
     username: "",
     password: "",
-    redirect: false,
+    redirectHomeBase: false,
+    redirectProfile: false,
   };
 
   // generic change handler for text input fields
@@ -26,25 +27,45 @@ class Login extends React.Component {
     axios.post("/login", { username: this.state.username, password: this.state.password }).then((resp) => {
       let data = resp.data;
 
-      let message = data.message
+      let errorMessage = data.errorMessage;
       let user = data.user;
 
       this.props.logInTheUser(user);
-      this.setState({
-        redirect: true,
-      });
+
+      if (errorMessage) {
+        alert(errorMessage);
+      } else {
+        if (user.latitude && user.longitude) {
+          this.setState({
+            redirectProfile: true,
+          });
+        } else {
+          this.setState({
+            redirectHomeBase: true,
+          });
+        }
+      }
     });
   };
 
   render() {
     return (
       <div className="Login">
-        {this.state.redirect ? <Redirect to="/UserProfile"></Redirect> : ""}
+        {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
+        {this.state.redirectHomeBase ? <Redirect to="/sethomebase"></Redirect> : ""}
         <div class="mb-3">
           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username" name="username" value={this.state.username} onChange={this.changeHandler} />
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="password" name="password" value={this.state.password} onChange={this.changeHandler} />
+          <input
+            type="password"
+            class="form-control"
+            id="formGroupExampleInput2"
+            placeholder="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.changeHandler}
+          />
         </div>
         <div className="loginBtn">
           <button type="button" class="btn btn-outline-primary" onClick={this.submitHandler}>
@@ -57,4 +78,3 @@ class Login extends React.Component {
 }
 
 export default Login;
-
