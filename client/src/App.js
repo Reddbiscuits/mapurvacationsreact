@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import Login from './components/LogIn';
 import 'bootstrap';
 import SetHomebase from './components/SetHomebase';
+import UserProfile from './components/UserProfile';
 
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
           <Route exact path="/" render={() => <Home logInTheUser={this.loginHandler}></Home>}></Route>
           {/* <Home></Home> */}
           <Route exact path="/sethomebase" component={SetHomebase}></Route>
+          <Route exact path="/userprofile" component={UserProfile}></Route>
           <SignUp></SignUp>
         </div>
       </div>

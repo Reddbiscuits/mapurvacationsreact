@@ -46,15 +46,27 @@ class SignUp extends React.Component {
             <div className="modal-content">
               <form onSubmit={this.submitHandler}>
                 <div className="mb-3">
-                <div className="Username">
-                  <label for="" class="form-label">Enter Username</label>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>  
-                  <input type="text" className="form-control"  placeholder="username" name="username" value={this.state.username} onChange={this.changeHandler}></input>
+                  <div className="Username">
+                    <label for="" class="form-label">
+                      Enter Username
+                    </label>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <input type="text" className="form-control" placeholder="username" name="username" value={this.state.username} onChange={this.changeHandler}></input>
                 </div>
                 <div className="mb-3">
-                  <label for="" class="form-label">Enter Password</label>
-                  <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="password" name="password" value={this.state.password} onChange={this.changeHandler}></input>
+                  <label for="" class="form-label">
+                    Enter Password
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="formGroupExampleInput2"
+                    placeholder="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.changeHandler}
+                  ></input>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={this.submitHandler}>
@@ -76,5 +88,3 @@ class SignUp extends React.Component {
 }
 
 export default SignUp;
-
-

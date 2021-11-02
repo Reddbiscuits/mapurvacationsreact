@@ -47,12 +47,32 @@ router.post("/login", (req, res, next) => {
   });
 });
 
+// router.post("/login-the-user", (req, res) => {
+//   User.findOne({ username: req.body.username }).then((user) => {
+//     if (!user) {
+//       res.send("user not found");
+//     }
+//     if (bcrypt.compareSync(req.body.password, user.password)) {
+//       if (user.latitude && user.longitude) {
+//         req.session.currentUser = user;
+//         res.redirect("/userprofile");
+//       } else {
+//         req.session.currentUser = user;
+//         res.redirect("/userHomeBase");
+//       }
+//     } else {
+//       res.send("password not correct");
+//     }
+//   });
+// });
+
 router.post("/save-home-base", (req, res) => {
   User.findByIdAndUpdate(req.session.currentUser._id, {
     longitude: req.body.theLongitude,
     latitude: req.body.theLatitude,
-  }).then(() => {
-    res.redirect("/userprofile");
+  }).then((user) => {
+    res.json({ user: user });
+    // res.redirect("/userprofile");
   });
 });
 

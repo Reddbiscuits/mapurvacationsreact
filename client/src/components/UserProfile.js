@@ -2,11 +2,12 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "bootstrap";
-import "./SetHomebase.css";
+import "./UserProfile.css";
 import NavBar from "./NavBar";
-import HomeBaseMap from "./HomeBaseMap";
+// import ProfileMap from "./ProfileMap"
 
-class SetHomebase extends React.Component {
+
+class UserProfile extends React.Component {
   state = {
     longitude: "",
     latitude: "",
@@ -38,13 +39,13 @@ class SetHomebase extends React.Component {
 
   render() {
     return (
-      <div className="SetHomebase">
-        {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
+      <div className="UserProfile">
+        {/* {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""} */}
 
         <NavBar></NavBar>
-        <div className="homeBaseBody">
-          <div className="baseMap">
-            <HomeBaseMap></HomeBaseMap>
+        {/* <div className="profileBody">
+          <div className="profileMap">
+            <ProfileMap></ProfileMap>
           </div>
           <form class="loginFields">
             <div class="mb-3">
@@ -59,10 +60,10 @@ class SetHomebase extends React.Component {
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     );
   }
 }
 
-export default SetHomebase;
+export default UserProfile;

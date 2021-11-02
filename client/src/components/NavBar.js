@@ -75,8 +75,8 @@ class NavBar extends React.Component {
             </a>
             <button
               class="btn btn-outline-light house"
-              class="btn btn-secondary dropdown-toggle"
-              class="gear"
+              className="btn btn-secondary dropdown-toggle"
+              className="gear"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
