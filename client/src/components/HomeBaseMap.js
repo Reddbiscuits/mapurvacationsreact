@@ -7,6 +7,8 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
+import "./HomeBaseMap.css";
+
 class HomeBaseMap extends React.Component {
   state = {
     redirect: false,
@@ -39,6 +41,7 @@ class HomeBaseMap extends React.Component {
     map.addControl(geocoder);
     // After the map style has loaded on the page,
     // add a source layer and default styling for a single point
+
     map.on("load", () => {
       map.addSource("single-point", {
         type: "geojson",
@@ -57,6 +60,16 @@ class HomeBaseMap extends React.Component {
           "circle-color": "#448ee4",
         },
       });
+
+      // add markers to map
+      // for (const feature of geojson.features) {
+      //   // create a HTML element for each feature
+      //   const el = document.createElement("div");
+      //   el.className = "marker";
+
+      //   // make a marker for each feature and add to the map
+      //   new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+      // }
 
       // Listen for the `result` event from the Geocoder
       // `result` event is triggered when a user makes a selection

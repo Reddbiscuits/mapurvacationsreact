@@ -155,11 +155,10 @@ class ProfileMap extends React.Component {
       zoom: 5, // starting zoom
     });
 
-    const marker = new mapboxgl.Marker({
-      draggable: true,
-    })
-      .setLngLat([lon, lat])
-      .addTo(map);
+    const el = document.createElement("div");
+    el.className = "marker";
+
+    new mapboxgl.Marker(el).setLngLat([lon, lat]).addTo(map);
 
     let startPoint = [Number(lon), Number(lat)];
 

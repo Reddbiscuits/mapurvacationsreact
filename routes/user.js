@@ -47,25 +47,6 @@ router.post("/login", (req, res, next) => {
   });
 });
 
-// router.post("/login-the-user", (req, res) => {
-//   User.findOne({ username: req.body.username }).then((user) => {
-//     if (!user) {
-//       res.send("user not found");
-//     }
-//     if (bcrypt.compareSync(req.body.password, user.password)) {
-//       if (user.latitude && user.longitude) {
-//         req.session.currentUser = user;
-//         res.redirect("/userprofile");
-//       } else {
-//         req.session.currentUser = user;
-//         res.redirect("/userHomeBase");
-//       }
-//     } else {
-//       res.send("password not correct");
-//     }
-//   });
-// });
-
 router.post("/save-home-base", (req, res) => {
   console.log(req.body)
   User.findByIdAndUpdate(req.session.currentUser._id, {
@@ -99,6 +80,31 @@ router.get("/checkuser", (req, res, next) => {
     
   } else {
     res.json({ userDoc: null });
+  }
+});
+
+// router.get("/userinfo", (req, res, next) => {  
+//   if (req.session.currentUser) {
+//     User.findById(req.session.currentUser._id).then((user) => {
+//       theUsername: req.session.currentUser.username, longitude: user.longitude, latitude: user.latitude
+//     })
+    
+//   } else {
+//     res.json({ userDoc: null });
+//   }
+// });
+
+router.get("/userprofile", (req, res) => {
+  if (!req.session.currentUser) {
+    res.send("user not found - go to login and log in");
+  } else {
+    //req.session.currentUser.username
+    User.findById(req.session.currentUser._id).then((user) => {
+      Location.find({ user: req.session.currentUser._id }).then((locsOfCurrentUser) => {
+        console.log(locsOfCurrentUser);
+        res.render("userprofile", { theUsername: req.session.currentUser.username, myLongitude: user.longitude, myLatitude: user.latitude, myLocations: locsOfCurrentUser });
+      });
+    });
   }
 });
 
