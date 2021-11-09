@@ -146,6 +146,7 @@ class ProfileMap extends React.Component {
 
     let lon = document.querySelector("#longitude").value;
     let lat = document.querySelector("#latitude").value;
+    let homebaseName = document.querySelector("#homebaseName").value;
     //let llon = document.querySelector("#loc-longitude-0").value;
     //let llat = document.querySelector("#loc-latitude-0").value;
 
@@ -156,17 +157,17 @@ class ProfileMap extends React.Component {
       zoom: 5, // starting zoom
     });
 
-    const el = document.createElement("div");
-    el.className = "marker";
+    const hb = document.createElement("div");
+    hb.className = "marker";
 
-    new mapboxgl.Marker(el)
+    new mapboxgl.Marker(hb)
       .setLngLat([lon, lat])
       .setPopup(
         new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML(`<h3>Home Base</h3><Link to="/">
-          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Create New Account
-          </button>
+          .setHTML(`<h3>Home Base: ${homebaseName}</h3><Link to="/">
+          <a type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View Photo Gallery
+          </a>
         </Link>`)
       )
       .addTo(map);
@@ -228,15 +229,28 @@ class ProfileMap extends React.Component {
         },
       });
 
+      
       let boundingBoxPoints = [];
       //let markers = [];
       for (let index = 0; index < 200; index++) {
+        let lnameEl = document.querySelector("#loc-name-" + index);
         let llonEl = document.querySelector("#loc-longitude-" + index);
         let llatEl = document.querySelector("#loc-latitude-" + index);
         if (llonEl && llatEl) {
+          const lname = lnameEl.value;
           const llon = llonEl.value;
           const llat = llatEl.value;
-          const marker = new mapboxgl.Marker().setLngLat([llon, llat]).addTo(map);
+          const marker = new mapboxgl.Marker()
+            .setLngLat([llon, llat])
+            .setPopup(
+              new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML(`<h3>${lname.split(",")[0]}</h3><Link to="/">
+              <a type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                View Photo Gallery
+              </a>
+            </Link>`)
+            )
+            .addTo(map);
           //markers.push(marker);
           boundingBoxPoints.push([Number(llon), Number(llat)]);
           drawLineToLoc(map, [Number(llon), Number(llat)], startPoint, index + 2);
@@ -265,7 +279,7 @@ class ProfileMap extends React.Component {
         map.getSource("single-point").setData(result.geometry);
         //document.querySelector(".locationField").innerText = result.geometry;
         console.log("result.geometry", result.geometry);
-        document.querySelector("#newname").value = result.place_name;
+        document.querySelector("#newname").value = result.place_name[0];
         // document.querySelector("#longitude").value = result.geometry.coordinates[0];
         // document.querySelector("#latitude").value = result.geometry.coordinates[1];
         document.querySelector("#newlongitude").value = result.geometry.coordinates[0];

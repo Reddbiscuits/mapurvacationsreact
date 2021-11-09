@@ -22,7 +22,7 @@ function Home(props) {
             <br />
             <div className="signupBtn">
               <Link to="/">
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
                   Create New Account
                 </button>
               </Link>

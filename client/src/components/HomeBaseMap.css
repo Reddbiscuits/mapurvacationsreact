@@ -16,6 +16,7 @@
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(3px 3px 2px #222);
   }
+  
   .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
@@ -28,6 +29,7 @@
   
   h3 {
     font-family: 'Papyrus';
+    font-size: 20px;
     font-weight: 800;
     text-decoration: underline;
   }

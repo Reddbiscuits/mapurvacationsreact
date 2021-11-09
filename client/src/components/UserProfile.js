@@ -8,7 +8,6 @@ import ProfileMap from "./ProfileMap";
 
 class UserProfile extends React.Component {
   state = {
-    name: "",
     longitude: "",
     latitude: "",
     locations: [],
@@ -16,6 +15,7 @@ class UserProfile extends React.Component {
     redirectProfile: false,
     loading: true,
     username: "",
+    homebaseName: "",
   };
 
   // generic changehandler for text input fields
@@ -28,14 +28,13 @@ class UserProfile extends React.Component {
   //   this.setState(newState);
   // };
 
-  
-
   componentDidMount() {
     axios.get("/checkuser").then((res) => {
       this.setState({
         longitude: res.data.userDoc.longitude,
         latitude: res.data.userDoc.latitude,
         username: res.data.userDoc.username,
+        homebaseName: res.data.userDoc.homebaseName,
       });
       axios.get("/locations").then((locs) => {
         this.setState({
@@ -75,7 +74,7 @@ class UserProfile extends React.Component {
         </div>
         <div className="profileBody">
           <div class="mb-3">
-            <input type="text" class="hbInput" name="theName" id="name" readOnly value={this.state.name} />
+            <input type="text" class="hbInput" name="theName" id="homebaseName" readOnly value={this.state.homebaseName} />
           </div>
           <div class="mb-3">
             <input type="text" class="hbInput" name="theLongitude" id="longitude" readOnly value={this.state.longitude} />
@@ -108,6 +107,7 @@ class UserProfile extends React.Component {
           {this.state.locations.map((location, idx) => {
             return (
               <div>
+                <input type="text" class="hbInput" readOnly id={"loc-name-" + idx} value={location.name} />
                 <input type="text" class="hbInput" readOnly id={"loc-longitude-" + idx} value={location.longitude} />
                 <input type="text" class="hbInput" readOnly id={"loc-latitude-" + idx} value={location.latitude} />
               </div>
@@ -115,33 +115,33 @@ class UserProfile extends React.Component {
           })}
         </div>
         <div clasName="card">
-        <div className="card-body">
-          <table class="destination-table" cellpadding="0" cellspacing="0">
-            <thead>
-              <tr>
-                <th>
-                  <b>Location</b>
-                </th>
-                <th>
-                  <b>Longitude</b>
-                </th>
-                <th>
-                  <b>Latitude</b>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.locations.map((location) => {
-                return (
-                  <tr key={location.id}>
-                    <td>{location.name}</td>
-                    <td>{location.longitude}</td>
-                    <td>{location.latitude}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="card-body">
+            <table class="destination-table" cellpadding="0" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>
+                    <b>Location</b>
+                  </th>
+                  <th>
+                    <b>Longitude</b>
+                  </th>
+                  <th>
+                    <b>Latitude</b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.locations.map((location) => {
+                  return (
+                    <tr key={location.id}>
+                      <td>{location.name}</td>
+                      <td>{location.longitude}</td>
+                      <td>{location.latitude}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

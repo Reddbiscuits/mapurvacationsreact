@@ -34,9 +34,10 @@ class SetHomebase extends React.Component {
 
   submitHandler = (event) => {
     event.preventDefault();
+    let name = document.querySelector("#homebasename").value;
     let long = document.querySelector("#longitude").value;
     let lat = document.querySelector("#latitude").value;
-    axios.post("/save-home-base", { longitude: long, latitude: lat }).then(() => {
+    axios.post("/save-home-base", { homebaseName: name, longitude: long, latitude: lat }).then(() => {
       // alert('user created')
       this.setState({
         redirectProfile: true,
@@ -62,6 +63,9 @@ class SetHomebase extends React.Component {
               <button type="submit" class="btn btn-outline-primary" onClick={this.submitHandler}>
                 Save Your Home Base
               </button>
+            </div>
+            <div class="hbInput">
+              <input type="text" class="hbInput" readOnly name="newName" id="homebasename" />
             </div>
             <div class="hbInput">
               <input type="text" class="form-control" name="theLongitude" id="longitude" />

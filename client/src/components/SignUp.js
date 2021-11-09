@@ -41,7 +41,7 @@ class SignUp extends React.Component {
     return (
       <div className="SignUp">
         {this.state.redirect ? <Redirect to=""></Redirect> : ""}
-        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <form onSubmit={this.submitHandler}>

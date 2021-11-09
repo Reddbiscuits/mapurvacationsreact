@@ -78,6 +78,7 @@ class HomeBaseMap extends React.Component {
         map.getSource("single-point").setData(result.geometry);
         //document.querySelector(".locationField").innerText = result.geometry;
         console.log("result.geometry", result.geometry);
+        document.querySelector("#homebasename").value = result.place_name;
         document.querySelector("#longitude").value = result.geometry.coordinates[0];
         document.querySelector("#latitude").value = result.geometry.coordinates[1];
       });

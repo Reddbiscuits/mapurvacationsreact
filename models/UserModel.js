@@ -9,6 +9,7 @@ const userSchema = new Schema({
   password: String, // hashed
   longitude: Number,
   latitude: Number,
+  homebaseName: String,
 });
 
 const User = mongoose.model("User", userSchema);

@@ -52,6 +52,7 @@ router.post("/save-home-base", (req, res) => {
   User.findByIdAndUpdate(
     req.session.currentUser._id,
     {
+      homebaseName: req.body.homebaseName,
       longitude: req.body.longitude,
       latitude: req.body.latitude,
     },

@@ -1,7 +1,7 @@
 
 
 .mapboxgl-popup {
-  max-width: 200px;
+  width: 400px;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(0px 3px 5px #222);
 }
