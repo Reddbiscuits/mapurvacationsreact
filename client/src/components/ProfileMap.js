@@ -6,6 +6,7 @@ import "bootstrap";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import { Link } from "react-router-dom";
 
 let framesPerSecond = 20;
 let initialOpacity = 1;
@@ -158,7 +159,17 @@ class ProfileMap extends React.Component {
     const el = document.createElement("div");
     el.className = "marker";
 
-    new mapboxgl.Marker(el).setLngLat([lon, lat]).addTo(map);
+    new mapboxgl.Marker(el)
+      .setLngLat([lon, lat])
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(`<h3>Home Base</h3><Link to="/">
+          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Create New Account
+          </button>
+        </Link>`)
+      )
+      .addTo(map);
 
     let startPoint = [Number(lon), Number(lat)];
 
@@ -266,7 +277,7 @@ class ProfileMap extends React.Component {
   render() {
     return (
       <div className="ProfileMap">
-        <div id="map" style={{ height: "500px", width: "700px" }}></div>
+        <div id="map" style={{ height: "500px", width: "1000px" }}></div>
       </div>
     );
   }

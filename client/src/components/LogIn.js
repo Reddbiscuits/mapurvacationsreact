@@ -23,7 +23,8 @@ class Login extends React.Component {
   };
 
   // class property syntax
-  submitHandler = () => {
+  submitHandler = (event) => {
+    event.preventDefault()
     axios.post("/login", { username: this.state.username, password: this.state.password }).then((resp) => {
       let data = resp.data;
 
@@ -53,6 +54,7 @@ class Login extends React.Component {
       <div className="Login">
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
         {this.state.redirectHomeBase ? <Redirect to="/sethomebase"></Redirect> : ""}
+        <form onSubmit={this.submitHandler}>
         <div class="mb-3">
           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username" name="username" value={this.state.username} onChange={this.changeHandler} />
         </div>
@@ -68,10 +70,11 @@ class Login extends React.Component {
           />
         </div>
         <div className="loginBtn">
-          <button type="button" class="btn btn-outline-primary" onClick={this.submitHandler}>
+          <button type="submit" class="btn btn-outline-primary" onClick={this.submitHandler}>
             Log In
           </button>
         </div>
+        </form>
       </div>
     );
   }

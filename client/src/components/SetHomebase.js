@@ -8,6 +8,7 @@ import HomeBaseMap from "./HomeBaseMap";
 
 class SetHomebase extends React.Component {
   state = {
+    username: "",
     longitude: "",
     latitude: "",
     redirectHomeBase: false,
@@ -23,11 +24,18 @@ class SetHomebase extends React.Component {
 
   //   this.setState(newState);
   // };
+  componentDidMount() {
+    axios.get("/checkuser").then((res) => {
+      this.setState({
+        username: res.data.userDoc.username,
+      });
+    });
+  }
 
   submitHandler = (event) => {
     event.preventDefault();
-    let long = document.querySelector("#longitude").value
-    let lat = document.querySelector("#latitude").value
+    let long = document.querySelector("#longitude").value;
+    let lat = document.querySelector("#latitude").value;
     axios.post("/save-home-base", { longitude: long, latitude: lat }).then(() => {
       // alert('user created')
       this.setState({
@@ -42,21 +50,24 @@ class SetHomebase extends React.Component {
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
 
         <NavBar></NavBar>
+        <div class="welcomeText">
+          <h1>Welcome {this.state.username}</h1>
+        </div>
         <div className="homeBaseBody">
           <div className="baseMap">
             <HomeBaseMap></HomeBaseMap>
           </div>
           <form class="loginFields">
-            <div class="mb-3">
-              <input type="text" class="form-control" name="theLongitude" id="longitude" />
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" name="theLatitude" id="latitude" />
-            </div>
             <div className="saveBaseBtn">
               <button type="submit" class="btn btn-outline-primary" onClick={this.submitHandler}>
                 Save Your Home Base
               </button>
+            </div>
+            <div class="hbInput">
+              <input type="text" class="form-control" name="theLongitude" id="longitude" />
+            </div>
+            <div class="hbInput">
+              <input type="text" class="form-control" name="theLatitude" id="latitude" />
             </div>
           </form>
         </div>

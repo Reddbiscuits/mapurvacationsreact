@@ -48,11 +48,15 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/save-home-base", (req, res) => {
-  console.log(req.body)
-  User.findByIdAndUpdate(req.session.currentUser._id, {
-    longitude: req.body.longitude,
-    latitude: req.body.latitude,
-  }, { new: true }).then((user) => {
+  console.log(req.body);
+  User.findByIdAndUpdate(
+    req.session.currentUser._id,
+    {
+      longitude: req.body.longitude,
+      latitude: req.body.latitude,
+    },
+    { new: true }
+  ).then((user) => {
     res.json({ user: user });
     // res.redirect("/userprofile");
   });
@@ -64,31 +68,37 @@ router.delete("/logout", (req, res) => {
       if (err) {
         res.status(400).send("Unable to log out");
       } else {
-        res.send("Logout successful");
+        res.json({ message: "Logout successful" });
       }
     });
   } else {
-    res.end();
+    res.json({ message: "WTH" });
   }
 });
 
-router.get("/checkuser", (req, res, next) => {  
+router.delete("/deleteuser", (req, res) => {
+  User.findByIdAndDelete(req.session.currentUser._id).then(() => {
+    req.session.destroy();
+    res.json({ message: "Account Deleted" });
+  });
+});
+
+router.get("/checkuser", (req, res, next) => {
   if (req.session.currentUser) {
     User.findById(req.session.currentUser._id).then((user) => {
       res.json({ userDoc: user });
-    })
-    
+    });
   } else {
     res.json({ userDoc: null });
   }
 });
 
-// router.get("/userinfo", (req, res, next) => {  
+// router.get("/userinfo", (req, res, next) => {
 //   if (req.session.currentUser) {
 //     User.findById(req.session.currentUser._id).then((user) => {
 //       theUsername: req.session.currentUser.username, longitude: user.longitude, latitude: user.latitude
 //     })
-    
+
 //   } else {
 //     res.json({ userDoc: null });
 //   }
@@ -102,7 +112,7 @@ router.get("/userprofile", (req, res) => {
     User.findById(req.session.currentUser._id).then((user) => {
       Location.find({ user: req.session.currentUser._id }).then((locsOfCurrentUser) => {
         console.log(locsOfCurrentUser);
-        res.render("userprofile", { theUsername: req.session.currentUser.username, myLongitude: user.longitude, myLatitude: user.latitude, myLocations: locsOfCurrentUser });
+        res.json("userprofile", { theUsername: req.session.currentUser.username, myLongitude: user.longitude, myLatitude: user.latitude, myLocations: locsOfCurrentUser });
       });
     });
   }

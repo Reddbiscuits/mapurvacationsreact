@@ -1,9 +1,33 @@
 .marker {
   background-image: url("../images/redMarker.png");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  cursor: pointer;
+  width: 30px;
+  height: 50px;
+  margin-top: -10px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(3px 3px 2px #222);
 }
+
+.mapboxgl-popup {
+  max-width: 200px;
+  border-width: 2px;
+  border-color: black;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(3px 3px 2px #222);
+  }
+  .mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  }
+
+  @font-face {
+    font-family: 'Papyrus';
+    src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
+  }
+  
+  h3 {
+    font-family: 'Papyrus';
+    font-weight: 800;
+    text-decoration: underline;
+  }

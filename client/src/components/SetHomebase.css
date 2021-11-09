@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Papyrus';
+  src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
+}
+
+h1 {
+  font-family: 'Papyrus';
+}
+
 .homeBaseBody {
   display: flex;
   /* justify-content: space-evenly; */
@@ -9,14 +18,14 @@
 }
 
 .loginFields {
-  padding-top: 150px;
+  padding-top: 88px;
   padding-left: 30px;
 }
 
 .form-control {
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .btn-outline-primary {
-  border-width: 3px;
+  border-width: 2px;
 }

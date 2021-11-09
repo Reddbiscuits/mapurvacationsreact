@@ -1,0 +1,21 @@
+
+
+.mapboxgl-popup {
+  max-width: 200px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(0px 3px 5px #222);
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@font-face {
+  font-family: 'Papyrus';
+  src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
+}
+
+h3 {
+  font-family: 'Papyrus';
+}

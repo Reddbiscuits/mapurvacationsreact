@@ -69,7 +69,7 @@ class SignUp extends React.Component {
                   ></input>
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={this.submitHandler}>
+                  <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={this.submitHandler}>
                     Submit
                   </button>
                 </div>

@@ -87,7 +87,7 @@ class HomeBaseMap extends React.Component {
   render() {
     return (
       <div className="HomeBaseMap">
-        <div id="map" style={{ height: "500px", width: "700px" }}></div>
+        <div id="map" style={{ height: "500px", width: "1000px" }}></div>
       </div>
     );
   }
