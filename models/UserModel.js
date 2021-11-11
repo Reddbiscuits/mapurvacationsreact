@@ -10,6 +10,7 @@ const userSchema = new Schema({
   longitude: Number,
   latitude: Number,
   homebaseName: String,
+  pictureUrl: String,
 });
 
 const User = mongoose.model("User", userSchema);

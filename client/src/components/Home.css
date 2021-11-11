@@ -25,3 +25,7 @@
   width: 100%;
   font-size: x-large;
 }
+
+#aboutBtn {
+  width: fit-content;
+}

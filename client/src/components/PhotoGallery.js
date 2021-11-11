@@ -37,6 +37,7 @@ class PhotoGallery extends React.Component {
 
   render() {
     return (
+      <div>
       <div className="PhotoGallery">
         {/* {this.state.redirect ? <Redirect to=""></Redirect> : ""} */}
         <div className="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,7 +46,7 @@ class PhotoGallery extends React.Component {
               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="/name.png" class="d-block w-100" alt="map" />
+                    <img src="/icon.png" class="d-block w-100" alt="map" />
                   </div>
                   <div class="carousel-item">
                     <img src="/redMarker.png" class="d-block w-100" alt="marker" />
@@ -71,6 +72,7 @@ class PhotoGallery extends React.Component {
         <input type="text" name="password" value={this.state.password} onChange={this.changeHandler}></input>
         <button onClick={this.submitHandler}>Submit</button>
       </form> */}
+      </div>
       </div>
     );
   }

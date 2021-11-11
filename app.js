@@ -73,6 +73,8 @@ const user = require('./routes/user');
 app.use('/', user);
 const locations = require('./routes/locations');
 app.use('/', locations);
+const projects = require('./routes/project-routes');
+app.use('/', projects);
 
 
 module.exports = app;

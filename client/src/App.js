@@ -8,6 +8,8 @@ import 'bootstrap';
 import SetHomebase from './components/SetHomebase';
 import UserProfile from './components/UserProfile';
 import PhotoGallery from './components/PhotoGallery';
+import AboutModal from './components/AboutModal';
+import UploadPic from './components/UploadPic';
 
 
 class App extends React.Component {
@@ -32,7 +34,9 @@ class App extends React.Component {
           <Route exact path="/sethomebase" component={SetHomebase}></Route>
           <Route exact path="/userprofile" component={UserProfile}></Route>
           <SignUp></SignUp>
-          <PhotoGallery></PhotoGallery>
+          <AboutModal></AboutModal>
+          <PhotoGallery className="test"></PhotoGallery>
+          <UploadPic></UploadPic>
         </div>
       </div>
     );

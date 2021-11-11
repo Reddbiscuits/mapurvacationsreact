@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Login from "./LogIn";
@@ -11,7 +12,15 @@ function Home(props) {
         <div className="icon">
           <img src="../icon.png" alt="" style={{ width: 200 }}></img>
           <img src="../name.png" alt=""></img>
+          <br></br>
+          <br></br>
+          <Link to="/">
+            <button id="aboutBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutModal">
+              What it's all about!
+            </button>
+          </Link>
         </div>
+        <div></div>
         <div className="card">
           <div className="card-body">
             <div>

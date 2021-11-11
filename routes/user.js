@@ -63,6 +63,20 @@ router.post("/save-home-base", (req, res) => {
   });
 });
 
+router.post("/save-picture-url", (req, res) => {
+  console.log(req.body);
+  User.findByIdAndUpdate(
+    req.session.currentUser._id,
+    {
+      pictureUrl: req.body.pictureUrl,
+    },
+    { new: true }
+  ).then((user) => {
+    res.json({ user: user });
+    // res.redirect("/userprofile");
+  });
+});
+
 router.delete("/logout", (req, res) => {
   if (req.session) {
     req.session.destroy((err) => {
