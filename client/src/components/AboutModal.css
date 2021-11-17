@@ -6,34 +6,37 @@
 
 h3 {
   font-family: 'Papyrus';
-  
 }
 
-.modal-content {
+p {
+  margin-bottom: 0px;
+}
+
+#aboutContent {
   background-image: url("../images/parchment.jpg");
-  background-size: 100%;
+  background-size: cover, contain;
   background-repeat: no-repeat;
   padding-top: 0px;
   padding-right: 10px;
 }
 
-.modal-header {
+#aboutHeader {
   padding-top: 0px;
   padding-right: 0px;
 }
 
-.modal-title {
+#aboutTitle {
   font-family: 'Papyrus';
   padding-top: 20px;
   font-weight: 650;
 }
 
-.btn-close {
+#aboutBtnClose {
   margin-left: 182.062px;
   margin-top: 0px;
 }
 
-.modal-body {
+#aboutBody {
   text-align: left;
   font-family: 'Papyrus';
   font-weight: 650;
@@ -44,8 +47,25 @@ button {
   width: auto;
 }
 
-.modal-dialog {
+#aboutDialog {
   max-width: 500px;
   margin-top: 350px;
   margin-left: 120px;
+}
+
+#aboutFooter {
+  text-align: left;
+  font-family: 'Papyrus';
+  font-weight: 650;
+}
+
+#aboutImage {
+  width: 100px;
+  /* padding-left: 20px; */
+}
+
+.aboutMaps {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }

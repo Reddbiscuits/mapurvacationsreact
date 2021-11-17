@@ -1,0 +1,10 @@
+#proPicContent {
+  background-image: url("../parchment.jpg");
+  background-size: cover, contain;
+  background-repeat: no-repeat;
+}
+
+#proPicBtnClose {
+  margin-left: 300px;
+  margin-bottom: 15px;
+}

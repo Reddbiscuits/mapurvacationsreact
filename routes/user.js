@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const avatar = req.body.avatar;
 
   User.findOne({ username: username }).then((foundUser) => {
     if (foundUser) {
@@ -19,6 +20,7 @@ router.post("/signup", (req, res, next) => {
       const aNewUser = new User({
         username: username,
         password: hashPass,
+        avatar: avatar,
       });
 
       aNewUser.save().then(() => {
@@ -52,6 +54,7 @@ router.post("/save-home-base", (req, res) => {
   User.findByIdAndUpdate(
     req.session.currentUser._id,
     {
+      avatar: req.body.avatar,
       homebaseName: req.body.homebaseName,
       longitude: req.body.longitude,
       latitude: req.body.latitude,

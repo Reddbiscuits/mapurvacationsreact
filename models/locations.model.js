@@ -10,6 +10,7 @@ const locationsSchema = new Schema(
     kilometers: Number,
     miles: Number,
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    image: String,
   },
   {
     timestamps: true,

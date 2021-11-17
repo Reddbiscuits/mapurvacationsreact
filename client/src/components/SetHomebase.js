@@ -52,6 +52,7 @@ class SetHomebase extends React.Component {
 
         <NavBar></NavBar>
         <div class="welcomeText">
+          <img src="../profilePhotoPlaceholder.png" className="profilePic" alt="profilePic" />
           <h1>Welcome {this.state.username}</h1>
         </div>
         <div className="homeBaseBody">

@@ -18,8 +18,32 @@ router.get("/locations", (req, res, next) => {
   });
 });
 
+router.get("/locations/:id", (req, res, next) => {
+  // List the locations
+  Locations.findById(req.params.id).then((result) => {
+    //console.log("results", result); // [ { } ]
+    res.json(result);
+    // res.send(result)
+  });
+});
+
 router.get("/show", (req, res) => {
   res.render("locations/show");
+});
+
+router.post("/save-gallery-url/:id", (req, res) => {
+  console.log(req.body);
+  Locations.findByIdAndUpdate(
+    req.params.id,
+    // TODO: use mongoose's $push to push to an array of images, and update the model to image: [String]
+    {
+      image: req.body.pictureUrl,
+    },
+    { new: true }
+  ).then((locations) => {
+    res.json({ locations: locations });
+    // res.redirect("/userprofile");
+  });
 });
 
 module.exports = router;

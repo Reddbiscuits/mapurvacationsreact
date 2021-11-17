@@ -1,22 +1,23 @@
 import React from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+// import axios from "axios";
+// import { Redirect } from "react-router-dom";
 //import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import { Link } from "react-router-dom";
+import PhotoGallery from "./PhotoGallery";
+// import { Link } from "react-router-dom";
 
-let framesPerSecond = 20;
-let initialOpacity = 1;
-let opacity = initialOpacity;
+// let framesPerSecond = 20;
+// let initialOpacity = 1;
+// let opacity = initialOpacity;
 let initialRadius = 4;
-let radius = initialRadius;
-let maxRadius = 15;
+// let radius = initialRadius;
+// let maxRadius = 15;
 
 let speedFactor = 100; // number of frames per longitude degree
-let animation; // to store and cancel the animation
+// let animation; // to store and cancel the animation
 
 function drawLineToLoc(map, endPoint, startPoint, index) {
   // Create a GeoJSON source with an empty lineString.
@@ -138,6 +139,7 @@ function drawLineToLoc(map, endPoint, startPoint, index) {
 
 class ProfileMap extends React.Component {
   state = {
+    currentLocationID: null,
     redirect: false,
   };
 
@@ -229,14 +231,15 @@ class ProfileMap extends React.Component {
         },
       });
 
-      
       let boundingBoxPoints = [];
       //let markers = [];
       for (let index = 0; index < 200; index++) {
+        let lidEl = document.querySelector("#loc-id-" + index);
         let lnameEl = document.querySelector("#loc-name-" + index);
         let llonEl = document.querySelector("#loc-longitude-" + index);
         let llatEl = document.querySelector("#loc-latitude-" + index);
         if (llonEl && llatEl) {
+          const lid = lidEl.value;
           const lname = lnameEl.value;
           const llon = llonEl.value;
           const llat = llatEl.value;
@@ -245,12 +248,23 @@ class ProfileMap extends React.Component {
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML(`<h3>${lname.split(",")[0]}</h3><Link to="/">
-              <a type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#galleryModal">
+              <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-backdrop="false" data-bs-target="#galleryModal">
                 View Photo Gallery
+              </button>
+            </Link>
+            <br></br>
+            <input type="text" class="lidField" value="${lid}" id="currentlySelectedLoc" style="display: none;"/>
+            <Link to="/">
+              <a type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#galleryUpload">
+                Upload Photos
               </a>
             </Link>`)
             )
             .addTo(map);
+          marker.getElement().addEventListener("click", () => {
+            this.setState({ currentLocationID: lid });
+          });
+
           //markers.push(marker);
           boundingBoxPoints.push([Number(llon), Number(llat)]);
           drawLineToLoc(map, [Number(llon), Number(llat)], startPoint, index + 2);
@@ -279,7 +293,7 @@ class ProfileMap extends React.Component {
         map.getSource("single-point").setData(result.geometry);
         //document.querySelector(".locationField").innerText = result.geometry;
         console.log("result.geometry", result.geometry);
-        document.querySelector("#newname").value = result.place_name[0];
+        document.querySelector("#newname").value = result.place_name;
         // document.querySelector("#longitude").value = result.geometry.coordinates[0];
         // document.querySelector("#latitude").value = result.geometry.coordinates[1];
         document.querySelector("#newlongitude").value = result.geometry.coordinates[0];
@@ -291,6 +305,7 @@ class ProfileMap extends React.Component {
   render() {
     return (
       <div className="ProfileMap">
+        {this.state.currentLocationID && <PhotoGallery key={this.state.currentLocationID} locationID={this.state.currentLocationID}></PhotoGallery>}
         <div id="map" style={{ height: "500px", width: "1000px" }}></div>
       </div>
     );

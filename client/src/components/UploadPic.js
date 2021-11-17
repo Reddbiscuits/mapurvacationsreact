@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class UploadPic extends React.Component {
   state = {
     file: null,
+    redirectProfile: false,
   };
 
   uploadFile = (event) => {
@@ -20,17 +22,21 @@ class UploadPic extends React.Component {
     axios.post("/upload", uploadData).then((resp) => {
       console.log(resp.data);
       axios.post("/save-picture-url", { pictureUrl: resp.data.file_url }).then(() => {
-        alert("upload and save in database -> done");
+        this.setState({
+          redirectProfile: true,
+        });
       });
     });
   };
 
   render() {
     return (
-      <div className="App">
-        <input type="file" onChange={this.uploadFile} />
-
-        <button onClick={this.saveHandler}>Save Image</button>
+      <div className="uploadField">
+        {this.state.redirectProfile ? <Redirect to="/userprofile?reload"></Redirect> : ""}
+        {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
+        <input type="file" class="btn btn-outline-primary" onChange={this.uploadFile} />
+        <br></br>
+        <button className="btn btn-primary" onClick={this.saveHandler}>Save Image</button>
       </div>
     );
   }

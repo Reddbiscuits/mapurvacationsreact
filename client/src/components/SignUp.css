@@ -1,3 +1,14 @@
+
+@font-face {
+  font-family: 'Papyrus';
+  src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
+}
+
+#signupContent {
+  font-family: 'Papyrus';
+  font-weight: 650;
+}
+
 .modal-content {
   padding: 20px 20px 20px 20px;
 }
@@ -15,4 +26,9 @@
 .form-label {
   display: flex;
   align-content: left;
+}
+
+#submitBtn {
+  font-weight: 650;
+  padding-top: 12px;
 }

@@ -1,16 +1,16 @@
-import React from 'react';
-import './App.css';
-import Home from './components/Home';
-import SignUp from './components/SignUp';
-import { Route } from 'react-router-dom';
-import Login from './components/LogIn';
-import 'bootstrap';
-import SetHomebase from './components/SetHomebase';
-import UserProfile from './components/UserProfile';
-import PhotoGallery from './components/PhotoGallery';
-import AboutModal from './components/AboutModal';
-import UploadPic from './components/UploadPic';
+import React from "react";
+import "./App.css";
+import Home from "./components/Home";
+import SignUp from "./components/SignUp";
+import { Route } from "react-router-dom";
+import Login from "./components/LogIn";
+import "bootstrap";
+import SetHomebase from "./components/SetHomebase";
+import UserProfile from "./components/UserProfile";
 
+import AboutModal from "./components/AboutModal";
+import UploadPic from "./components/UploadPic";
+import ProfilePicModal from "./components/ProfilePicModal";
 
 class App extends React.Component {
   state = {
@@ -32,11 +32,11 @@ class App extends React.Component {
           <Route exact path="/" render={() => <Home logInTheUser={this.loginHandler}></Home>}></Route>
           {/* <Home></Home> */}
           <Route exact path="/sethomebase" component={SetHomebase}></Route>
-          <Route exact path="/userprofile" component={UserProfile}></Route>
+          <Route path="/userprofile" render={(props) => <UserProfile key={props.location.search}></UserProfile>}></Route>
           <SignUp></SignUp>
           <AboutModal></AboutModal>
-          <PhotoGallery className="test"></PhotoGallery>
-          <UploadPic></UploadPic>
+
+          {/* <UploadPic></UploadPic> */}
         </div>
       </div>
     );

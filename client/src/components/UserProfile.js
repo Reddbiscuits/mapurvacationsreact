@@ -5,6 +5,9 @@ import "bootstrap";
 import "./UserProfile.css";
 import NavBar from "./NavBar";
 import ProfileMap from "./ProfileMap";
+import GalleryUpload from "./GalleryUpload";
+import ProfilePicModal from "./ProfilePicModal";
+import PhotoGallery from "./PhotoGallery";
 
 class UserProfile extends React.Component {
   state = {
@@ -16,6 +19,7 @@ class UserProfile extends React.Component {
     loading: true,
     username: "",
     homebaseName: "",
+    profilePic: "",
   };
 
   // generic changehandler for text input fields
@@ -35,6 +39,7 @@ class UserProfile extends React.Component {
         latitude: res.data.userDoc.latitude,
         username: res.data.userDoc.username,
         homebaseName: res.data.userDoc.homebaseName,
+        profilePic: res.data.userDoc.pictureUrl,
       });
       axios.get("/locations").then((locs) => {
         this.setState({
@@ -69,8 +74,9 @@ class UserProfile extends React.Component {
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
 
         <NavBar></NavBar>
+        <ProfilePicModal></ProfilePicModal>
         <div class="welcomeText">
-          <img src="../profilePhotoPlaceholder.png" className="profilePic" alt="profilePic"/>
+          <img src={this.state.profilePic} className="profilePic" alt="profilePic" />
           <h1>Welcome {this.state.username}</h1>
         </div>
         <div className="profileBody">
@@ -104,10 +110,13 @@ class UserProfile extends React.Component {
           </form>
         </div>
         <br></br>
+        <GalleryUpload></GalleryUpload>
+        
         <div className="locMarkers">
           {this.state.locations.map((location, idx) => {
             return (
               <div>
+                <input type="text" class="hbInput" readOnly id={"loc-id-" + idx} value={location._id} />
                 <input type="text" class="hbInput" readOnly id={"loc-name-" + idx} value={location.name} />
                 <input type="text" class="hbInput" readOnly id={"loc-longitude-" + idx} value={location.longitude} />
                 <input type="text" class="hbInput" readOnly id={"loc-latitude-" + idx} value={location.latitude} />

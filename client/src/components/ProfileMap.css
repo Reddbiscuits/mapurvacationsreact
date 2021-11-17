@@ -19,3 +19,7 @@
 h3 {
   font-family: 'Papyrus';
 }
+
+.lidField {
+  display: none;
+}

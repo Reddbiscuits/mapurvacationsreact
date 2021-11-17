@@ -58,14 +58,19 @@
   margin-left: -55px;
 }
 
+#houseBtn {
+  margin-right: 20px;
+}
+
 .house {
   -webkit-filter: drop-shadow(5px 5px 0px #222);
-  filter: drop-shadow(1px 1px 1px #222);
+  filter: drop-shadow(2px 2px 0px #222);
 }
 
 .gear {
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(1px 1px 1px #222);
+  /* -webkit-filter: drop-shadow(5px 5px 5px #222); */
+  filter: drop-shadow(2px 2px 0px #222);
+  margin-right: 20px;
 }
 
 
@@ -75,7 +80,7 @@ form {
 }
 
 button {
-  text-shadow: 1px 1px 0px black;
+  /* text-shadow: 1px 1px 0px black; */
   /* -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(1px 1px 0px #222); */
 }

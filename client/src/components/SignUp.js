@@ -43,7 +43,7 @@ class SignUp extends React.Component {
         {this.state.redirect ? <Redirect to=""></Redirect> : ""}
         <div className="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
+            <div className="modal-content" id="signupContent">
               <form onSubmit={this.submitHandler}>
                 <div className="mb-3">
                   <div className="Username">
@@ -69,7 +69,7 @@ class SignUp extends React.Component {
                   ></input>
                 </div>
                 <div className="modal-footer">
-                  <button type="submit" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={this.submitHandler}>
+                  <button type="submit" id="submitBtn" className="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#exampleModal" onClick={this.submitHandler}>
                     Submit
                   </button>
                 </div>

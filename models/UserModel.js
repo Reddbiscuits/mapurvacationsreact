@@ -10,7 +10,8 @@ const userSchema = new Schema({
   longitude: Number,
   latitude: Number,
   homebaseName: String,
-  pictureUrl: String,
+  avatar: String,
+  pictureUrl: { type: String, default: "/profilePhotoPlaceholder.png"},
 });
 
 const User = mongoose.model("User", userSchema);
