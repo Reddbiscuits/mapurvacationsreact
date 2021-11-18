@@ -20,6 +20,16 @@ h3 {
   font-family: 'Papyrus';
 }
 
+Link {
+  font-family: 'Papyrus';
+}
+
 .lidField {
   display: none;
+}
+
+.btn-primary {
+  width: 80%;
+  font-size: medium;
+  font-weight: 400;
 }

@@ -6,18 +6,9 @@ import "./PhotoGallery.css";
 
 class PhotoGallery extends React.Component {
   state = {
-    image: String,
+    image: [String],
     loading: true,
   };
-
-  // loadData = () => {
-  //   axios.get("/locations/" + this.props.locationID).then((res) => {
-  //     this.setState({
-  //       loading: false,
-  //       image: res.data.image,
-  //     });
-  //   });
-  // };
 
   componentDidMount() {
     console.log("requesting ==> " + "/locations/" + this.props.locationID);
@@ -25,36 +16,10 @@ class PhotoGallery extends React.Component {
       console.log("res.data ==> ", res.data);
       this.setState({
         loading: false,
-        image: res.data.image,
+        image: [res.data.image],
       });
     });
   }
-
-  // generic changehandler for text input fields
-  // changeHandler = (e) => {
-  //   let currentName = e.target.name;
-
-  //   let newState = {};
-  //   newState[currentName] = e.target.value;
-
-  //   this.setState(newState);
-  // };
-
-  // submitHandler = (event) => {
-  //   event.preventDefault();
-  //   axios.post("/signup", { username: this.state.username, password: this.state.password }).then(() => {
-  //     // alert('user created')
-  //     this.setState({
-  //       redirect: true,
-  //     });
-  //   });
-
-  //   // Reset
-  //   this.setState({
-  //     username: "",
-  //     password: "",
-  //   });
-  // };
 
   render() {
     const carousel = (

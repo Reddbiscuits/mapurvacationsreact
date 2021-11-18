@@ -37,7 +37,7 @@ router.post("/save-gallery-url/:id", (req, res) => {
     req.params.id,
     // TODO: use mongoose's $push to push to an array of images, and update the model to image: [String]
     {
-      image: req.body.pictureUrl,
+      $push: {image: [req.body.pictureUrl]}
     },
     { new: true }
   ).then((locations) => {

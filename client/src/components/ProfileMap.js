@@ -248,16 +248,16 @@ class ProfileMap extends React.Component {
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML(`<h3>${lname.split(",")[0]}</h3><Link to="/">
-              <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-backdrop="false" data-bs-target="#galleryModal">
+              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-backdrop="false" data-bs-target="#galleryModal" style="font-family: Papyrus; font-size: medium; font-weight: 600; padding-bottom: 3px;">
                 View Photo Gallery
               </button>
             </Link>
             <br></br>
             <input type="text" class="lidField" value="${lid}" id="currentlySelectedLoc" style="display: none;"/>
             <Link to="/">
-              <a type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#galleryUpload">
+              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#galleryUpload" style="font-family: Papyrus; font-size: medium; font-weight: 600; padding-bottom: 3px;">
                 Upload Photos
-              </a>
+              </button>
             </Link>`)
             )
             .addTo(map);
