@@ -14,7 +14,7 @@ class GalleryUpload extends React.Component {
   uploadFile = (event) => {
     this.setState({
       file: event.target.files[0],
-      loading: false,
+      loading: true,
     });
   };
 
@@ -28,9 +28,9 @@ class GalleryUpload extends React.Component {
       axios.post("/save-gallery-url/" + document.querySelector("#currentlySelectedLoc").value, { pictureUrl: resp.data.file_url }).then(() => {
         this.setState({
           redirectProfile: true,
-          loading: true,
+          loading: false,
         });
-        window.location.reload();
+        // window.location.reload();
       });
     });
   };
