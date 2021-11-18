@@ -124,7 +124,8 @@ router.get("/checkuser", (req, res, next) => {
 //   }
 // });
 
-router.get("/userprofile", (req, res) => {
+// NOTE:not currently used
+router.get("/api/userprofile", (req, res) => {
   if (!req.session.currentUser) {
     res.send("user not found - go to login and log in");
   } else {
