@@ -132,7 +132,7 @@ router.get("/userprofile", (req, res) => {
     User.findById(req.session.currentUser._id).then((user) => {
       Location.find({ user: req.session.currentUser._id }).then((locsOfCurrentUser) => {
         console.log(locsOfCurrentUser);
-        res.json("userprofile", { theUsername: req.session.currentUser.username, myLongitude: user.longitude, myLatitude: user.latitude, myLocations: locsOfCurrentUser });
+        res.json({ theUsername: req.session.currentUser.username, myLongitude: user.longitude, myLatitude: user.latitude, myLocations: locsOfCurrentUser });
       });
     });
   }
