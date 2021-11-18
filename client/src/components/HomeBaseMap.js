@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+// import axios from "axios";
+// import { Redirect } from "react-router-dom";
 //import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap";
 import mapboxgl from "mapbox-gl";
