@@ -6,7 +6,7 @@ import "./PhotoGallery.css";
 
 class PhotoGallery extends React.Component {
   state = {
-    image: [String],
+    images: [],
     loading: true,
   };
 
@@ -16,7 +16,7 @@ class PhotoGallery extends React.Component {
       console.log("res.data ==> ", res.data);
       this.setState({
         loading: false,
-        image: [res.data.image],
+        images: res.data.image,
       });
     });
   }
@@ -25,9 +25,16 @@ class PhotoGallery extends React.Component {
     const carousel = (
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src={this.state.image} class="d-block w-100" alt="map" />
+          <div className="carousel-item active">
+            <img src={this.state.images[0]} class="d-block w-100" alt="map" />
           </div>
+          {this.state.images.slice(1).map((image) => {
+            return (
+              <div className="carousel-item">
+                <img src={image} class="d-block w-100" alt="map" />
+              </div>
+            );
+          })}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
