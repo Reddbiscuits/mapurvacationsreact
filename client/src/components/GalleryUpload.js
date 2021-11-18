@@ -30,7 +30,7 @@ class GalleryUpload extends React.Component {
           redirectProfile: true,
           loading: false,
         });
-        // window.location.reload();
+        window.location.reload();
       });
     });
   };
@@ -38,7 +38,7 @@ class GalleryUpload extends React.Component {
   render() {
     return (
       <div className="SignUp">
-        {/* <h1>{this.state.loading && "wait for image upload"}</h1> */}
+        <h1>{this.state.loading && "wait for image upload"}</h1>
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
         <div className="modal fade" id="galleryUpload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
