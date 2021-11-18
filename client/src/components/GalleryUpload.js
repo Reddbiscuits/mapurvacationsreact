@@ -14,6 +14,7 @@ class GalleryUpload extends React.Component {
   uploadFile = (event) => {
     this.setState({
       file: event.target.files[0],
+      loading: false,
     });
   };
 
@@ -27,8 +28,9 @@ class GalleryUpload extends React.Component {
       axios.post("/save-gallery-url/" + document.querySelector("#currentlySelectedLoc").value, { pictureUrl: resp.data.file_url }).then(() => {
         this.setState({
           redirectProfile: true,
+          loading: true,
         });
-        // window.location.reload();
+        window.location.reload();
       });
     });
   };
@@ -36,13 +38,16 @@ class GalleryUpload extends React.Component {
   render() {
     return (
       <div className="SignUp">
+        {/* <h1>{this.state.loading && "wait for image upload"}</h1> */}
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
         <div className="modal fade" id="galleryUpload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <button type="button" class="btn-close" id="aboutBtnClose" data-bs-dismiss="modal" aria-label="Close"></button>
               <input type="file" className="btn btn-outline-primary" onChange={this.uploadFile} />
-              <button onClick={this.saveHandler} className="btn btn-primary" data-bs-dismiss="modal">Save Image</button>
+              <button onClick={this.saveHandler} className="btn btn-primary" data-bs-dismiss="modal">
+                Save Image
+              </button>
             </div>
           </div>
         </div>

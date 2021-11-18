@@ -26,6 +26,7 @@ class PhotoGallery extends React.Component {
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div className="carousel-item active">
+            {console.log("sssss =>", this.state.images)}
             <img src={this.state.images[0]} class="d-block w-100" alt="map" />
           </div>
           {this.state.images.slice(1).map((image) => {
