@@ -70,3 +70,13 @@ td {
   -webkit-filter: drop-shadow(none);
   filter: drop-shadow(none);
 }
+
+#infoCard {
+  width: 300px;
+  margin-top: 10px;
+}
+
+p {
+  font-family: 'Papyrus';
+  font-weight: 650;
+}

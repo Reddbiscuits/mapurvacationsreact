@@ -54,7 +54,7 @@ class Login extends React.Component {
       <div className="Login">
         {this.state.redirectProfile ? <Redirect to="/userprofile"></Redirect> : ""}
         {this.state.redirectHomeBase ? <Redirect to="/sethomebase"></Redirect> : ""}
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} id="loginForm">
         <div class="mb-3">
           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username" name="username" value={this.state.username} onChange={this.changeHandler} />
         </div>
@@ -70,9 +70,9 @@ class Login extends React.Component {
           />
         </div>
         <div className="loginBtn">
-          <button type="submit" class="btn btn-outline-primary" onClick={this.submitHandler}>
+          <button type="submit" class="btn btn-outline-primary" id="loginBtn" onClick={this.submitHandler}><b>
             Log In
-          </button>
+          </b></button>
         </div>
         </form>
       </div>

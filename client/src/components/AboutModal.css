@@ -10,6 +10,7 @@ h3 {
 
 p {
   margin-bottom: 0px;
+  font-size: 15px;
 }
 
 #aboutContent {
@@ -68,4 +69,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-items: center;
+}
+
+#aboutModal {
+  filter: drop-shadow(3px 3px 5px #222);
 }

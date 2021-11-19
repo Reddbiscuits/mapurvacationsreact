@@ -1,4 +1,9 @@
 
+@font-face {
+  font-family: 'Papyrus';
+  src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
+}
+
 .Login {
   display: flex;
   flex-direction: column;
@@ -7,4 +12,22 @@
 
 .btn-outline-primary {
   width: 100%;
+  font-family: 'Papyrus';
+  font-weight: 650;
+  padding-top: 12px;
+  
+}
+
+#loginForm {
+  font-family: 'Papyrus';
+  font-weight: 400;
+  padding-top: 12px;
+  padding-bottom: 0px;
+}
+
+#loginBtn {
+  font-family: 'Papyrus';
+  font-weight: 650;
+  padding-top: 12px;
+  padding-bottom: 4px;
 }

@@ -16,7 +16,7 @@ function Home(props) {
           <br></br>
           <Link to="/">
             <button id="aboutBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutModal">
-              What it's all about!
+              How it works!
             </button>
           </Link>
         </div>
@@ -31,9 +31,9 @@ function Home(props) {
             <br />
             <div className="signupBtn">
               <Link to="/">
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal"><b>
                   Create New Account
-                </button>
+                </b></button>
               </Link>
             </div>
           </div>

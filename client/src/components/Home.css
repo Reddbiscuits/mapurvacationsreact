@@ -26,6 +26,22 @@
   font-size: x-large;
 }
 
+.signupBtn {
+  font-family: 'Papyrus';
+  font-weight: 650;
+  padding-top: 12px;
+  padding-bottom: 0px;
+}
+
 #aboutBtn {
+  font-family: 'Papyrus';
+  font-weight: 650;
+  padding-top: 12px;
+  padding-bottom: 0px;
   width: fit-content;
+}
+
+@font-face {
+  font-family: 'Papyrus';
+  src: local('Papyrus'), url("../fonts/Papyrus.woff") format('woff');
 }

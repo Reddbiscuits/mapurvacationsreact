@@ -80,6 +80,19 @@ class UserProfile extends React.Component {
           <h1>Welcome {this.state.username}</h1>
         </div>
         <div className="profileBody">
+        <div className="card" id="infoCard">
+          <div className="card-body">
+            <h3>INSTRUCTIONS</h3>
+            <hr></hr>
+            <p>1) Use the Map's SEARCH function to look for a new location; i.e. street address, city, state, country, etc.</p>
+              <br></br>
+            <p>2) Click on your desired location from the list</p>
+            <br></br>
+            <p>3) Then click "Save New Location"</p>
+            <br></br>
+            <p>4) Once a Marker is set, you can click on it and Upload photos from your trip and View them in the Gallery</p>
+          </div>
+        </div>
           <div class="mb-3">
             <input type="text" class="hbInput" name="theName" id="homebaseName" readOnly value={this.state.homebaseName} />
           </div>
